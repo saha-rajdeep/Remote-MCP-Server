@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-calculator
+  labels:
+    app: mcp-calculator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-calculator
+  template:
+    metadata:
+      labels:
+        app: mcp-calculator
+    spec:
+      containers:
+      - name: mcp-calculator
+        image: 279684395949.dkr.ecr.us-west-2.amazonaws.com/mcp-calculator:amd64
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        env:
+        - name: PORT
+          value: "8000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-calculator-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+spec:
+  selector:
+    app: mcp-calculator
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+    - name: direct
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer
