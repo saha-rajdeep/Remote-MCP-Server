@@ -14,7 +14,7 @@ async def test_remote_mcp():
     print("=" * 50)
     
     # URL of the remote MCP server
-    server_url = "http://k8s-default-mcpcalcu-7c00740636-3ed476afbba95187.elb.us-west-2.amazonaws.com/mcp/"
+    server_url = "<insert your loadbalancer URL>/mcp/"
     print(f"📡 Connecting to: {server_url}")
     
     try:
