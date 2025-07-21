@@ -108,7 +108,7 @@ curl -X POST \
 ```
 
 **Expected Result:**
-```json
+```
 event: message
 data: {"jsonrpc":"2.0","id":2,"result":{"tools":[{"name":"add_numbers","description":"Add two numbers together.\n\nArgs:\n    a: First number to add\n    b: Second number to add\n    \nReturns:\n    The sum of a and b","inputSchema":{"type":"object","properties":{"a":{"type":"number"},"b":{"type":"number"}},"required":["a","b"]}}]}}
 ```
@@ -124,7 +124,7 @@ curl -X POST \
 ```
 
 **Expected Result:**
-```json
+```
 event: message
 data: {"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"39.8"}],"structuredContent":{"result":39.8},"isError":false}}
 ```
